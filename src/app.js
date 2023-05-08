@@ -35,6 +35,11 @@ setInterval(setAllTimezones, 1000);
 function updateCity(event) {
   let selectedCityTimezone = event.target.value;
   let cityName = event.target.selectedOptions[0].text;
+
+  if (!cityName) {
+    cityName = document.querySelector("#city-search").value;
+  }
+
   let selectedCityTime = moment().tz(selectedCityTimezone);
   let citiesElement = document.querySelector("#cities");
   citiesElement.innerHTML = `
@@ -50,6 +55,38 @@ function updateCity(event) {
   `;
 }
 
+function searchCity(event) {
+  event.preventDefault();
+  let cityName = document.querySelector("#city-search").value;
+
+  // Try to find the timezone using moment-timezone
+  let timezone = moment.tz.names().find((name) => {
+    return name.toLowerCase().includes(cityName.toLowerCase());
+  });
+
+  if (timezone) {
+    let selectedCityTime = moment().tz(timezone);
+    let citiesElement = document.querySelector("#cities");
+    citiesElement.innerHTML = `
+      <div class="city">
+        <div>
+          <h2>${cityName}</h2>
+          <div class="date">${selectedCityTime.format("MMMM Do, YYYY")}</div>
+        </div>
+        <div class="time">${selectedCityTime.format(
+          "h:mm:ss"
+        )}<small>${selectedCityTime.format(" A")}</small></div>
+      </div>
+    `;
+  } else {
+    alert(`Sorry, we couldn't find the timezone for "${cityName}".`);
+  }
+  document.querySelector("#city-search").value = "";
+}
+
 let citiesSelectElement = document.querySelector("#city-select");
+let citySearchElement = document.querySelector("#city-search");
+let searchFormElement = document.querySelector("#search-form");
 
 citiesSelectElement.addEventListener("change", updateCity);
+searchFormElement.addEventListener("submit", searchCity);

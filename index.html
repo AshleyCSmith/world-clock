@@ -13,18 +13,48 @@
     <div class="container">
       <h1>World Clock</h1>
 
+      <label for="city-select">Select a city:</label>
       <select id="city-select">
-        <option value="">Select a city...</option>
+        <option value="">Please select a city...</option>
         <option value="Asia/Shanghai">Bejing</option>
         <option value="Europe/London">London</option>
         <option value="America/Chicago">Milwaukee</option>
         <option value="America/New_York">New York</option>
       </select>
 
+      <form id="search-form">
+        <div class="form-group">
+          <label for="city-search">Or search for a city:</label>
+          <div class="input-wrapper">
+            <input
+              type="text"
+              id="city-search"
+              placeholder="Search for a city..."
+              autocomplete="off"
+            />
+            <button id="search-button" type="submit">Search</button>
+          </div>
+        </div>
+      </form>
+
+      <p>
+        <strong>Note to user:</strong> Please note that some cities may not be
+        recognized by the application due to differences in the timezone
+        database used by the moment-timezone library. If you encounter any
+        issues with a city not being recognized, please try using a nearby city
+        or a larger city in the same time zone.
+        <a
+          href="https://gist.github.com/diogocapela/12c6617fc87607d11fd62d2a4f42b02a"
+          target="_blank"
+          class="city-list"
+          >Check here for a list of cities</a
+        >
+      </p>
+
       <div id="cities">
         <div class="city" id="texas">
           <div>
-            <h2>Texas 🇺🇸</h2>
+            <h2>Texas</h2>
             <div class="date"></div>
           </div>
           <div class="time"></div>
@@ -32,7 +62,7 @@
 
         <div class="city" id="sydney">
           <div>
-            <h2>Sydney 🇦🇺</h2>
+            <h2>Sydney</h2>
 
             <div class="date"></div>
           </div>
@@ -41,7 +71,7 @@
 
         <div class="city" id="tokyo">
           <div>
-            <h2>Tokyo 🇯🇵</h2>
+            <h2>Tokyo</h2>
 
             <div class="date"></div>
           </div>
