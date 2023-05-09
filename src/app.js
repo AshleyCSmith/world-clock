@@ -38,7 +38,7 @@ function updateCity(event) {
 
   if (selectedCityTimezone === "current") {
     selectedCityTimezone = moment.tz.guess();
-    cityName = selectedCityTimezone;
+    cityName = selectedCityTimezone.split("/")[1].replace("_", " ");
   }
 
   let selectedCityTime = moment().tz(selectedCityTimezone);
@@ -63,16 +63,19 @@ function searchCity(event) {
   let cityName = document.querySelector("#city-search").value;
 
   let timezone = moment.tz.names().find((name) => {
-    return name.toLowerCase().includes(cityName.toLowerCase());
+    return name
+      .toLowerCase()
+      .includes(cityName.toLowerCase().replace(" ", "_"));
   });
 
   if (timezone) {
     let selectedCityTime = moment().tz(timezone);
+    let cityNameFormatted = cityName.replace("_", " ");
     let citiesElement = document.querySelector("#cities");
     citiesElement.innerHTML = `
       <div class="city">
         <div>
-          <h2>${cityName}</h2>
+          <h2>${cityNameFormatted}</h2>
           <div class="date">${selectedCityTime.format("MMMM Do, YYYY")}</div>
         </div>
         <div class="time">${selectedCityTime.format(
