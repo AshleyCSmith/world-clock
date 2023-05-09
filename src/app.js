@@ -59,7 +59,6 @@ function searchCity(event) {
   event.preventDefault();
   let cityName = document.querySelector("#city-search").value;
 
-  // Try to find the timezone using moment-timezone
   let timezone = moment.tz.names().find((name) => {
     return name.toLowerCase().includes(cityName.toLowerCase());
   });
