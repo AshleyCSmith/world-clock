@@ -54,6 +54,7 @@ function updateCity(event) {
         "h:mm:ss"
       )}<small>${selectedCityTime.format(" A")}</small></div>
     </div>
+    <a href="/">Back to home</a>
   `;
 }
 
@@ -78,6 +79,7 @@ function searchCity(event) {
           "h:mm:ss"
         )}<small>${selectedCityTime.format(" A")}</small></div>
       </div>
+      <a href="/">Back to home</a>
     `;
   } else {
     alert(`Sorry, we couldn't find the timezone for "${cityName}".`);
