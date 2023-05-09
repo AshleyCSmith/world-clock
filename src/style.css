@@ -26,6 +26,11 @@ label {
   font-size: 18px;
 }
 
+p {
+  font-size: 14px;
+  font-style: italic;
+}
+
 #search-button {
   padding: 10px;
   border-radius: 4px;
